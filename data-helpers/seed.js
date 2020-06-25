@@ -4,8 +4,9 @@ const Reviewer = require('../lib/models/Reviewer');
 const Studio = require('../lib/models/Studio');
 const Actor = require('../lib/models/Actor');
 const Film = require('../lib/models/Film');
+const Review = require('../lib/models/Review');
 
-const seed = async({ reviewers = 3, studios = 5, actors = 5, films = 10 } = {}) => {
+const seed = async({ reviewers = 3, studios = 5, actors = 5, films = 10, reviews = 200 } = {}) => {
 
   const createdReviewers = await Reviewer.create([...Array(reviewers)].map(() => ({
     name: chance.name(),
@@ -35,6 +36,13 @@ const seed = async({ reviewers = 3, studios = 5, actors = 5, films = 10 } = {}) 
       role: `${chance.name()} the ${chance.profession()}`,
       actor: chance.pickone(createdActors)._id
     }]
+  })));
+
+  await Review.create([...Array(reviews)].map(() => ({
+    rating: chance.pickone([1, 2, 3, 4, 5]),
+    reviewer: chance.pickone(createdReviewers)._id,
+    review: chance.word({ length: 30 }),
+    film: chance.pickone(createdFilms)._id
   })));
 };
 
