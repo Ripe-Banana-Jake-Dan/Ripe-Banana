@@ -4,12 +4,12 @@ const Reviewer = require('../lib/models/Reviewer');
 
 const seed = async({ reviewer = 3 } = {}) => {
 
-    const reviewer = await Reviewer.create([...Array(reviewer)].map(() => ({
-        name: chance.name(),
-        company: chance.company()
-    })))
+  const createdReviewer = await Reviewer.create([...Array(reviewer)].map(() => ({
+    name: chance.name(),
+    company: chance.company()
+  })));
 
-}
+};
 
 
-module.exports = seed
+module.exports = seed;
