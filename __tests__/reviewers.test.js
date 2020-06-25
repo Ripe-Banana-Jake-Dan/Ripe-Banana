@@ -10,19 +10,12 @@ describe('reviewers routes', () => {
     
   it('gets all reviewers with GET', async() => {
 
-    const reviewer = prepare(await Reviewer.findOne());
+    const reviewers = prepare(await Reviewer.find());
 
     return request(app)
       .get('/api/v1/reviewers')
       .then(res => {
-        expect(res.body).toEqual([{ '__v': 0, '_id': expect.anything(),
-          'company': expect.any(String), 'name': expect.any(String) }, 
-        { '__v': 0, '_id': expect.anything(), 
-          'company': expect.any(String), 'name': expect.any(String) }, 
-        { '__v': 0, '_id': expect.anything(),
-          'company': expect.any(String), 
-          'name': expect.any(String) }]);
+        expect(res.body).toEqual(reviewers);
       });
-   
   });
 });
