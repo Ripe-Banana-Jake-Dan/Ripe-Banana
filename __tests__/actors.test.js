@@ -18,11 +18,12 @@ describe('actors routes', () => {
 
   it('it gets actor by ID and the films they are in', async() => {
     
-    const actor = prepare(await Actor.findOne().populate('Film', { title: true, released: true }));
-
+    const actor = prepare(await Actor.findOne().populate('films', { title: true, released: true }));
+    
     return request(app)
       .get(`/api/v1/actors/${actor._id}`)
       .then(res => {
+        console.log(res.body);
         expect(res.body).toEqual(actor);
       });
   });

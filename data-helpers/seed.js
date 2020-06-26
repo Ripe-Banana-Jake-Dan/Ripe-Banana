@@ -6,7 +6,7 @@ const Actor = require('../lib/models/Actor');
 const Film = require('../lib/models/Film');
 const Review = require('../lib/models/Review');
 
-const seed = async({ reviewers = 3, studios = 5, actors = 5, films = 10, reviews = 200 } = {}) => {
+const seed = async({ reviewers = 3, studios = 5, actors = 5, films = 30, reviews = 200 } = {}) => {
 
   const createdReviewers = await Reviewer.create([...Array(reviewers)].map(() => ({
     name: chance.name(),
