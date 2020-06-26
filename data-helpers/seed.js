@@ -46,5 +46,4 @@ const seed = async({ reviewers = 3, studios = 5, actors = 5, films = 10, reviews
   })));
 };
 
-
 module.exports = seed;

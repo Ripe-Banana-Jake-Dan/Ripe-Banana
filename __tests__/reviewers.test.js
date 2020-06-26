@@ -18,4 +18,19 @@ describe('reviewers routes', () => {
         expect(res.body).toEqual(reviewers);
       });
   });
+
+  it('it gets a reviewer by id and other stuff', async() => {
+    
+    const reviewer = prepare(await Reviewer.findOne().populate({ 
+      path: 'reviews',
+      select: { rating: true, review: true, film: true }, 
+      populate: { path: 'film', select: { title: true } }
+    }));
+    
+    return request(app)
+      .get(`/api/v1/reviewers/${reviewer._id}`)
+      .then(res => {
+        expect(res.body).toEqual(reviewer);
+      });
+  });
 });
