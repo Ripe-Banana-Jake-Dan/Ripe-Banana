@@ -23,7 +23,6 @@ describe('actors routes', () => {
     return request(app)
       .get(`/api/v1/actors/${actor._id}`)
       .then(res => {
-        console.log(res.body);
         expect(res.body).toEqual(actor);
       });
   });
