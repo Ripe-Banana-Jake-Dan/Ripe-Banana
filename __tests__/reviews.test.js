@@ -33,8 +33,14 @@ describe('review route tests', () => {
   
   
   it('it gets the top 100 highest rated reviews', () => {
-        
     
+    
+
+    return request(app)
+      .get('/api/v1/reviews/top100')
+      .then(res => {
+        expect(res.body).toHaveLength(100);
+      });
 
   });
 
