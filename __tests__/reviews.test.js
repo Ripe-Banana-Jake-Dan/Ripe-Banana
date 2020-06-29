@@ -19,6 +19,17 @@ describe('review route tests', () => {
       });
   });
   
+  it('it deletes a review by id with DELETE', async() => {
+    
+    const review = prepare(await Review.findOne());
+
+    return request(app)
+      .delete(`/api/v1/reviews/${review._id}`)
+      .then(res => {
+        expect(res.body).toEqual(review);
+      });
+
+  });
   
   
   it('it gets the top 100 highest rated reviews', () => {
