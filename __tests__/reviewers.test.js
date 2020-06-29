@@ -64,7 +64,7 @@ describe('reviewers routes', () => {
 
   it('it deletes a reviewer by id if there are no reviews', async() => {
     
-    const reviewer = prepare(await Reviewer.findOne());
+    const reviewer = prepare(await Reviewer.create({ name: 'reviwerName', company: 'reviewerCompany' }));
 
     return request(app)
       .delete(`/api/v1/reviewers/${reviewer._id}`)
