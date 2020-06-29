@@ -8,6 +8,16 @@ const request = require('supertest');
 
 describe('reviewers routes', () => {
     
+  it('creates an reviewer via POST', async() => {
+    return request(app)
+      .post('/api/v1/reviewers/')
+      .send({ name:'Bob', company: 'Bob\'s company' })
+      .then(res => {
+        expect(res.body).toEqual({ _id: expect.anything(), id: expect.anything(), name:'Bob', company: 'Bob\'s company', __v: 0 });
+      });
+  });
+  
+  
   it('gets all reviewers with GET', async() => {
 
     const reviewers = prepare(await Reviewer.find());
