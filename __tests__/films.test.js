@@ -8,7 +8,7 @@ const request = require('supertest');
 
 describe('film route tests', () => {
  
-  it.only('creates an film via POST', async() => {
+  it('creates an film via POST', async() => {
     const studio = prepare(await Studio.findOne());
     return request(app)
       .post('/api/v1/films/')

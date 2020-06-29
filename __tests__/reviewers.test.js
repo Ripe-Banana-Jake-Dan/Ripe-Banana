@@ -43,4 +43,22 @@ describe('reviewers routes', () => {
         expect(res.body).toEqual(reviewer);
       });
   });
+
+  it('updates a reviewer with PATCH', async() => {
+
+    const reviewer = prepare(await Reviewer.findOne());
+
+    return request(app)
+      .patch(`/api/v1/reviewers/${reviewer._id}`)
+      .send({ company: 'new company' })
+      .then(res => {
+        expect(res.body).toEqual({
+          __v: 0,
+          name: reviewer.name,
+          company: 'new company',
+          _id: reviewer.id,
+          id: expect.anything()
+        });
+      });
+  });
 });
