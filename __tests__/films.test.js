@@ -27,7 +27,7 @@ describe('film route tests', () => {
       .populate('studio', { name: true })
       .populate('cast.actor', { name: true })
       .populate({
-        path: 'review',
+        path: 'reviews',
         select: { rating: true, review: true },
         populate: { path: 'reviewer', select: { name: true } }
       })

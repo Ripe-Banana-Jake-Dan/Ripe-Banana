@@ -6,6 +6,15 @@ const request = require('supertest');
 
 describe('studios routes', () => {
 
+  it('creates an studio via POST', async() => {
+    return request(app)
+      .post('/api/v1/studios/')
+      .send({ name:'Bob\'s studio', address: { city: 'name' } })
+      .then(res => {
+        expect(res.body).toEqual({ _id: expect.anything(), id: expect.anything(), name:'Bob\'s studio', address: { city: 'name' }, __v: 0 });
+      });
+  });
+  
   it('get all studios with GET', async() => {
     const studios = prepare(await (await Studio.find().select({ name: true })));
 
